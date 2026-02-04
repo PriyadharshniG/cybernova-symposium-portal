@@ -1,10 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="card glass-card text-center">
-    <div class="success-icon">🎉</div>
-    <h1>Registration Successful!</h1>
-    <p>Thank you for registering for the symposium. We're excited to see you there!</p>
-    <a href="{{ url_for('register') }}" class="btn btn-primary">Register Another</a>
+<div class="success-wrapper">
+    <div class="glass-card success-card">
+        <div class="success-animation">
+            <span class="checkmark">✔</span>
+        </div>
+
+        <h1 class="gradient-text">Registration Successful!</h1>
+
+        <p class="success-subtext">
+            🎉 You’re officially registered for the symposium.<br>
+            Get ready to learn, build, and connect!
+        </p>
+
+        <div class="success-actions">
+            <a href="{{ url_for('register') }}" class="btn btn-primary">
+                ➕ Register Another Event
+            </a>
+            <a href="{{ url_for('index') }}" class="btn btn-outline">
+                🏠 Back to Home
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}
