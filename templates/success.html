@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card glass-card text-center">
+    <div class="success-icon">🎉</div>
+    <h1>Registration Successful!</h1>
+    <p>Thank you for registering for the symposium. We're excited to see you there!</p>
+    <a href="{{ url_for('register') }}" class="btn btn-primary">Register Another</a>
+</div>
+{% endblock %}

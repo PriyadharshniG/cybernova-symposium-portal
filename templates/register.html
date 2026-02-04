@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-container">
+    <div class="glass-panel">
+        <header style="text-align: center; margin-bottom: 2rem;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; color: white;">Event <span
+                    class="text-gradient">Registration</span></h1>
+            <p style="color: var(--text-secondary);">Join the revolution at CyberNova 2026</p>
+        </header>
+
+        <form action="{{ url_for('register') }}" method="POST" id="registerForm">
+            <div class="form-group">
+                <label for="full_name">Full Name</label>
+                <input type="text" id="full_name" name="full_name" required placeholder="John Doe">
+            </div>
+
+            <div class="form-group">
+                <label for="register_number">Register Number</label>
+                <input type="text" id="register_number" name="register_number" required placeholder="e.g. 917719C001">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="department" name="department" required>
+                        <option value="" disabled selected>Select Dept</option>
+                        <option value="CSE">CSE</option>
+                        <option value="IT">IT</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="MECH">MECH</option>
+                        <option value="CIVIL">CIVIL</option>
+                        <option value="AI & DS">AI & DS</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Year of Study</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="year" value="1st" required> 1st
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="year" value="2nd"> 2nd
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="year" value="3rd"> 3rd
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="year" value="4th"> 4th
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="college_name">College Name</label>
+                <input type="text" id="college_name" name="college_name" required placeholder="University Name">
+            </div>
+
+            <div class="form-group">
+                <label for="event">Select Event</label>
+                <select id="event" name="event" required>
+                    <option value="" disabled selected>Choose an event</option>
+                    {% if events %}
+                    {% for id, event in events.items() %}
+                    <option value="{{ id }}">{{ event.name }}</option>
+                    {% endfor %}
+                    {% else %}
+                    <!-- Fallback if events dict is missing in context -->
+                    <option value="Paper Presentation">Paper Presentation</option>
+                    <option value="Code Warriors">Code Warriors</option>
+                    {% endif %}
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="9876543210" pattern="[0-9]{10}">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">Complete
+                    Registration</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

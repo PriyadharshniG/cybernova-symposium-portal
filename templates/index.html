@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- POSTER HERO SECTION -->
+<section id="home"
+    style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative;">
+    <div style="z-index: 2;">
+        <h4 style="color: var(--neon-cyan); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1rem;">March
+            25th, 2026</h4>
+        <h1
+            style="font-size: 5rem; line-height: 1.1; margin-bottom: 1rem; text-shadow: 0 0 40px rgba(188, 19, 254, 0.5);">
+            CYBER<span class="text-gradient">NOVA</span>
+        </h1>
+        <p
+            style="font-size: 1.5rem; color: var(--text-secondary); margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Where Innovation Meets Imagination. Experience the future of technology at our national level technical
+            symposium.
+        </p>
+
+        <div style="display: flex; gap: 20px; justify-content: center;">
+            <a href="#events" class="btn-primary">Explore Events</a>
+            <a href="{{ url_for('register') }}" class="btn-secondary">Register Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" style="padding: 100px 0;">
+    <div class="glass-panel" style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">About The <span class="text-gradient">Symposium</span></h2>
+        <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;">
+            CyberNova is the annual technical festival of the Department of Computer Science.
+            It brings together the brightest minds to compete, collaborate, and create.
+            With over 10+ events and prizes worth ₹50,000, this is your stage to shine.
+        </p>
+
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 4rem;">
+            <div>
+                <h3 style="font-size: 3rem; color: var(--neon-cyan);">10+</h3>
+                <p>Technical & Non-Tech Events</p>
+            </div>
+            <div>
+                <h3 style="font-size: 3rem; color: var(--neon-purple);">500+</h3>
+                <p>Participants Expected</p>
+            </div>
+            <div>
+                <h3 style="font-size: 3rem; color: var(--neon-pink);">₹50k</h3>
+                <p>Total Prize Pool</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- THEMES SECTION -->
+<section id="themes" style="padding: 100px 0;">
+    <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 4rem;">Core <span
+            class="text-gradient">Themes</span></h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+        <!-- Theme 1 -->
+        <div class="glass-panel" style="text-align: center; transition: transform 0.3s; cursor: default;">
+            <i data-lucide="brain-circuit"
+                style="width: 60px; height: 60px; color: var(--neon-cyan); margin-bottom: 1.5rem;"></i>
+            <h3>AI & Innovation</h3>
+            <p style="color: var(--text-secondary); margin-top: 1rem;">Exploring the frontiers of Artificial
+                Intelligence and Machine Learning.</p>
+        </div>
+
+        <!-- Theme 2 -->
+        <div class="glass-panel" style="text-align: center; transition: transform 0.3s;">
+            <i data-lucide="code-2"
+                style="width: 60px; height: 60px; color: var(--neon-purple); margin-bottom: 1.5rem;"></i>
+            <h3>Web & App Dev</h3>
+            <p style="color: var(--text-secondary); margin-top: 1rem;">Building the next generation of digital
+                experiences and platforms.</p>
+        </div>
+
+        <!-- Theme 3 -->
+        <div class="glass-panel" style="text-align: center; transition: transform 0.3s;">
+            <i data-lucide="cpu" style="width: 60px; height: 60px; color: var(--neon-pink); margin-bottom: 1.5rem;"></i>
+            <h3>IoT & Robotics</h3>
+            <p style="color: var(--text-secondary); margin-top: 1rem;">Connecting the physical world with smart
+                technology.</p>
+        </div>
+    </div>
+</section>
+
+<!-- EVENTS SHOWCASE -->
+<section id="events" style="padding: 100px 0;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem;">
+        <h2 style="font-size: 2.5rem;">Featured <span class="text-gradient">Events</span></h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
+        {% for id, event in events.items() %}
+        <div class="glass-panel"
+            style="position: relative; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--neon-cyan);">
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1rem;">
+                <i data-lucide="{{ event.icon }}" style="width: 30px; height: 30px; color: var(--neon-cyan);"></i>
+                <span
+                    style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary);">{{
+                    event.category }}</span>
+            </div>
+
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">{{ event.name }}</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; flex-grow: 1;">{{ event.tagline }}</p>
+
+            <div style="display: flex; gap: 10px; margin-top: auto;">
+                <a href="{{ url_for('event_detail', event_id=id) }}" class="btn-secondary"
+                    style="padding: 8px 20px; font-size: 0.9rem; flex: 1; text-align: center;">Details</a>
+                <a href="{{ url_for('register') }}?event={{ id }}" class="btn-primary"
+                    style="padding: 8px 20px; font-size: 0.9rem; flex: 1; text-align: center; box-shadow: none;">Register</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- VGLUG FOUNDATION SECTION -->
+<section id="vglug" style="padding: 100px 0; position: relative;">
+    <div style="text-align: center; margin-bottom: 4rem;">
+        <p style="text-transform: uppercase; letter-spacing: 3px; color: var(--neon-purple); margin-bottom: 1rem;">
+            Powered By</p>
+        <h2 style="font-size: 3rem;">VGLUG <span class="text-gradient">Foundation</span></h2>
+    </div>
+
+    <div class="glass-panel" style="text-align: center; padding: 4rem 2rem;">
+        <i data-lucide="globe" style="width: 60px; height: 60px; color: white; margin-bottom: 2rem;"></i>
+        <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 3rem; color: #d0d0ff;">
+            VGLUG (Villupuram GNU/Linux Users Group) Foundation is a non-profit organization dedicated to promoting
+            <strong style="color: var(--neon-cyan);">Open Source Technologies</strong> and empowering students through
+            community-driven learning.
+            We bridge the gap between academic learning and real-world industry skills.
+        </p>
+
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 3rem;">
+            <div>
+                <i data-lucide="users" style="color: var(--neon-pink); margin-bottom: 1rem;"></i>
+                <h4>Community First</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Building a strong network of tech
+                    enthusiasts.</p>
+            </div>
+            <div>
+                <i data-lucide="code" style="color: var(--neon-cyan); margin-bottom: 1rem;"></i>
+                <h4>Open Source</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Advocating for free and open software.</p>
+            </div>
+            <div>
+                <i data-lucide="rocket" style="color: var(--neon-purple); margin-bottom: 1rem;"></i>
+                <h4>Skill Growth</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Practical training and mentorship.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ORGANIZERS SECTION -->
+<section id="organizers" style="padding: 100px 0;">
+    <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 4rem;">Organized <span
+            class="text-gradient">By</span></h2>
+
+    <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+        <!-- Lead Organizer -->
+        <div class="glass-panel" style="text-align: center; min-width: 250px;">
+            <div
+                style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue)); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center;">
+                <i data-lucide="user" style="color: white; width: 40px; height: 40px;"></i>
+            </div>
+            <h3>Priyadharshni G</h3>
+            <p style="color: var(--neon-cyan); font-size: 0.9rem; margin-top: 5px;">Lead Organizer</p>
+        </div>
+
+        <!-- Co-Organizer 1 -->
+        <div class="glass-panel" style="text-align: center; min-width: 250px;">
+            <div
+                style="width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.1); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; border: 2px solid var(--neon-purple);">
+                <i data-lucide="user" style="color: white; width: 40px; height: 40px;"></i>
+            </div>
+            <h3>Chitra</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 5px;">Technical Coordinator</p>
+        </div>
+
+        <!-- Co-Organizer 2 -->
+        <div class="glass-panel" style="text-align: center; min-width: 250px;">
+            <div
+                style="width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.1); margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; border: 2px solid var(--neon-pink);">
+                <i data-lucide="user" style="color: white; width: 40px; height: 40px;"></i>
+            </div>
+            <h3>Dhivya</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 5px;">Event Coordinator</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
