@@ -54,34 +54,6 @@ It is backed by **SQLite** for data storage, deployed on **Render**, and built u
 | Deployment | Render |
 | Templates | Jinja2 |
 
----
-
-## 🗂️ Project Structure
-
-
-
-cybernova-symposium-portal/
-├── app.py
-├── config.py
-├── models.py
-├── requirements.txt
-├── runtime.txt
-├── templates/
-│ ├── base.html
-│ ├── index.html
-│ ├── event_detail.html
-│ ├── register.html
-│ ├── success.html
-│ ├── admin.html
-│ └── login.html
-├── static/
-│ ├── css/
-│ ├── js/
-│ └── images/
-├── instance/ # SQLite database goes here
-├── .gitignore
-└── README.md
-
 
 ---
 
