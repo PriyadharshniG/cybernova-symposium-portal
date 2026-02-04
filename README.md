@@ -110,34 +110,12 @@ Data is saved using SQLAlchemy in an SQLite database.
 The admin panel is protected by a password stored as an environment variable.
 Admins can view all registrations and export them.
 
-🛡 Environment Variables
 
-Make sure these exist in your deployment platform (like Render):
 
-Key	Purpose
-SECRET_KEY	Session security key
-ADMIN_PASSWORD	Admin login password
-📈 Deployment (Render)
-
-This project includes:
-
-✔ runtime.txt — pins Python 3.12.x
-✔ requirements.txt — includes all packages (including gunicorn)
-✔ Auto-creation of database tables on startup
-
-When deploying on Render:
-
-Select Python 3
-
-Add environment variables (SECRET_KEY, ADMIN_PASSWORD)
-
-Build command: pip install -r requirements.txt
-
-Start command: gunicorn app:app
 
 💡 Contributions
 
-This project is a personal / academic project.
+This project is a personal project.
 Feel free to open issues or propose enhancements!
 
 📜 License
