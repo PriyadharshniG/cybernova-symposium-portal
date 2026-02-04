@@ -795,9 +795,104 @@ select option {
     transition: all 0.3s ease;
 }
 
-.btn-outline:hover {
-    background: rgba(255, 255, 255, 0.1);
+
+/* --- Mobile Responsiveness --- */
+
+@media (max-width: 768px) {
+
+    /* Global Container */
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Typography Reductions */
+    h1 {
+        font-size: 2.5rem !important;
+    }
+
+    h2 {
+        font-size: 2rem !important;
+    }
+
+    h3 {
+        font-size: 1.5rem !important;
+    }
+
+    /* Navbar Adjustment (Scrollable Horizontal) */
+    .navbar {
+        padding: 0.5rem 0;
+    }
+
+    .nav-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        gap: 20px;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        /* Smooth scroll on iOS */
+    }
+
+    .nav-links a {
+        white-space: nowrap;
+        font-size: 0.9rem;
+    }
+
+    /* Hero Section */
+    #home {
+        min-height: auto;
+        padding: 150px 0 100px;
+    }
+
+    #home p {
+        font-size: 1.1rem !important;
+    }
+
+    /* Grid Layouts to Single Column */
+    .container[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Event Detail Page specific overrides */
+    .event-sidebar {
+        position: static !important;
+        /* Unstick on mobile */
+    }
+
+    /* Form Adjustments */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-container {
+        margin: 2rem auto;
+    }
+
+    /* Animation Tweak */
+    .glass-panel:hover {
+        transform: none !important;
+        /* Disable lift on touch to prevent sticky hover states */
+    }
+
+    /* Organizers Stack */
+    #organizers .glass-panel {
+        width: 100%;
+        min-width: unset;
+    }
+
+    /* Section Padding */
+    section {
+        padding: 60px 0 !important;
+    }
 }
+
 
 /* Animations */
 @keyframes popIn {
