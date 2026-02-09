@@ -32,20 +32,26 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-content">
-            <a href="{{ url_for('index') }}" class="nav-logo">
+            <a href="{{ url_for('main.index') }}" class="nav-logo">
                 CYBER<span style="color:var(--neon-cyan)">NOVA</span>
             </a>
 
             <div class="nav-links">
-                <a href="{{ url_for('index') }}#home">Home</a>
-                <a href="{{ url_for('index') }}#about">About</a>
-                <a href="{{ url_for('index') }}#events">Events</a>
-                <a href="{{ url_for('index') }}#vglug">VGLUG</a>
-                <a href="{{ url_for('index') }}#organizers">Organizers</a>
-                <a href="{{ url_for('login') }}">Admin</a>
+                <a href="{{ url_for('main.index') }}#home">Home</a>
+                <a href="{{ url_for('main.index') }}#about">About</a>
+                <a href="{{ url_for('main.index') }}#events">Events</a>
+
+                <a href="{{ url_for('main.announcements') }}">Updates</a>
+                <a href="{{ url_for('user.portal') }}">Login</a>
+                <a href="{{ url_for('main.sponsors') }}">Sponsors</a>
+                <a href="{{ url_for('admin.login') }}">Admin</a>
+                <button id="theme-toggle" class="btn-theme" title="Toggle Theme">
+                    <i data-lucide="moon" class="moon-icon"></i>
+                    <i data-lucide="sun" class="sun-icon" style="display:none;"></i>
+                </button>
             </div>
 
-            <a href="{{ url_for('register') }}" class="nav-btn">Register Now</a>
+            <a href="{{ url_for('user.register') }}" class="nav-btn">Register Now</a>
         </div>
     </nav>
 
@@ -74,7 +80,36 @@
     </footer>
 
     <script>
-        lucide.createIcons();
+        // Lucide icons
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const moonIcon = document.querySelector('.moon-icon');
+        const sunIcon = document.querySelector('.sun-icon');
+
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcons(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcons(newTheme);
+        });
+
+        function updateThemeIcons(theme) {
+            if (theme === 'dark') {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            } else {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+            }
+        }
 
         // Remove flash messages after 3 seconds
         setTimeout(() => {
@@ -85,6 +120,7 @@
             });
         }, 3000);
     </script>
+    {% include 'chatbot.html' %}
 </body>
 
 </html>

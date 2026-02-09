@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="padding-top: 120px; padding-bottom: 60px;">
+    <h1 class="text-gradient" style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">Leaderboard</h1>
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">Top performers across all events.
+    </p>
+
+    <div class="glass-panel" style="overflow-x: auto;">
+        <table class="leaderboard-table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <th style="padding: 1rem; text-align: left; color: var(--neon-cyan);">Rank</th>
+                    <th style="padding: 1rem; text-align: left; color: var(--neon-cyan);">Team Name</th>
+                    <th style="padding: 1rem; text-align: left; color: var(--neon-cyan);">Event</th>
+                    <th style="padding: 1rem; text-align: center; color: var(--neon-cyan);">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.3s;">
+                    <td style="padding: 1rem;">
+                        {% if entry.rank == 1 %}
+                        <span style="color: #FFD700; font-weight: bold; font-size: 1.2rem;">🥇 1st</span>
+                        {% elif entry.rank == 2 %}
+                        <span style="color: #C0C0C0; font-weight: bold; font-size: 1.2rem;">🥈 2nd</span>
+                        {% elif entry.rank == 3 %}
+                        <span style="color: #CD7F32; font-weight: bold; font-size: 1.2rem;">🥉 3rd</span>
+                        {% else %}
+                        <span style="color: var(--text-secondary);">#{{ entry.rank }}</span>
+                        {% endif %}
+                    </td>
+                    <td style="padding: 1rem; font-weight: 500;">
+                        {{ entry.team_name }}
+                        <div style="font-size: 0.8rem; color: var(--text-secondary);">{{ entry.college }}</div>
+                    </td>
+                    <td style="padding: 1rem; color: var(--text-secondary);">{{ entry.event_id }}</td>
+                    <td style="padding: 1rem; text-align: center; font-weight: bold; color: var(--neon-purple);">
+                        {{ entry.score }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .leaderboard-table tbody tr:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+</style>
+{% endblock %}

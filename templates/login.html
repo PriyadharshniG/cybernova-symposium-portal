@@ -8,7 +8,7 @@
             style="width: 50px; height: 50px; color: var(--neon-cyan); margin-bottom: 1rem;"></i>
         <h2 style="margin-bottom: 2rem;">Admin Access</h2>
 
-        <form action="{{ url_for('login') }}" method="POST">
+        <form action="{{ url_for('admin.login') }}" method="POST">
             <div class="form-group" style="text-align: left;">
                 <label for="password">Enter Password</label>
                 <input type="password" id="password" name="password" required placeholder="••••••••">

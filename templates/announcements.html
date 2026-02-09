@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="padding-top: 120px; padding-bottom: 60px; max-width: 800px;">
+    <h1 class="text-gradient" style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">Announcements</h1>
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">Latest updates and news.</p>
+
+    <div class="announcements-list" style="margin-bottom: 5rem;">
+        {% for ann in announcements %}
+        <div class="glass-panel announcement-card {{ ann.priority }}"
+            style="margin-bottom: 1.5rem; position: relative; border-left: 4px solid var(--border-color);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span class="badge {{ ann.priority }}">{{ ann.priority|upper }}</span>
+                <span style="font-size: 0.8rem; color: var(--text-secondary);">{{ ann.created_at.strftime('%Y-%m-%d
+                    %H:%M') }}</span>
+            </div>
+            <h3 style="margin-bottom: 0.5rem;">{{ ann.title }}</h3>
+            <p style="color: rgba(255,255,255,0.8);">{{ ann.content }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="leaderboard" style="margin-top: 5rem;">
+        <h2 class="text-gradient" style="font-size: 2.5rem; text-align: center; margin-bottom: 1rem;">Live Standings
+        </h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">Real-time event leaderboard.
+        </p>
+
+        <div class="glass-panel" style="overflow-x: auto; padding: 0;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="background: rgba(255,255,255,0.05);">
+                        <th style="padding: 1.2rem; color: var(--neon-cyan);">Rank</th>
+                        <th style="padding: 1.2rem;">Team / Participant</th>
+                        <th style="padding: 1.2rem;">College</th>
+                        <th style="padding: 1.2rem;">Event</th>
+                        <th style="padding: 1.2rem; text-align: right; color: var(--neon-purple);">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in leaderboard %}
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.3s;"
+                        onmouseover="this.style.background='rgba(255,255,255,0.03)'"
+                        onmouseout="this.style.background='transparent'">
+                        <td style="padding: 1.2rem;">
+                            {% if entry.rank == 1 %} 🥇 {% elif entry.rank == 2 %} 🥈 {% elif entry.rank == 3 %} 🥉 {%
+                            else %} {{ entry.rank }} {% endif %}
+                        </td>
+                        <td style="padding: 1.2rem; font-weight: 600;">{{ entry.team_name }}</td>
+                        <td style="padding: 1.2rem; color: var(--text-secondary); font-size: 0.9rem;">{{ entry.college
+                            }}</td>
+                        <td style="padding: 1.2rem;"><span class="badge event">{{ entry.event_id|capitalize }}</span>
+                        </td>
+                        <td style="padding: 1.2rem; text-align: right; font-weight: bold; color: var(--neon-purple);">{{
+                            entry.score }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" style="padding: 3rem; text-align: center; color: var(--text-secondary);">
+                            Standings will be updated soon...</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .announcement-card {
+        transition: transform 0.3s;
+    }
+
+    .announcement-card:hover {
+        transform: translateX(10px);
+    }
+
+    /* Priority Styles */
+    .announcement-card.critical {
+        --border-color: #ff4444;
+    }
+
+    .announcement-card.event {
+        --border-color: var(--neon-purple);
+    }
+
+    .announcement-card.info {
+        --border-color: var(--neon-cyan);
+    }
+
+    .badge {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .badge.critical {
+        background: rgba(255, 68, 68, 0.2);
+        color: #ff4444;
+        border: 1px solid #ff4444;
+    }
+
+    .badge.event {
+        background: rgba(188, 19, 254, 0.2);
+        color: var(--neon-purple);
+        border: 1px solid var(--neon-purple);
+    }
+
+    .badge.info {
+        background: rgba(0, 243, 255, 0.2);
+        color: var(--neon-cyan);
+        border: 1px solid var(--neon-cyan);
+    }
+</style>
+{% endblock %}

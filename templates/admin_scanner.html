@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top: 120px; margin-bottom: 60px;">
+    <div class="glass-panel" style="max-width: 500px; margin: 0 auto; text-align: center;">
+        <div style="margin-bottom: 2rem;">
+            <i data-lucide="qr-code"
+                style="width: 60px; height: 60px; color: var(--neon-cyan); margin-bottom: 1rem;"></i>
+            <h1 style="font-size: 2rem;">QR <span class="text-gradient">Scanner</span></h1>
+            <p style="color: var(--text-secondary);">Enter participant ID or use camera for check-in</p>
+        </div>
+
+        <div class="scan-input-group" style="margin-bottom: 2rem;">
+            <input type="number" id="manual-id" placeholder="Enter Registration ID"
+                style="width: 100%; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 12px; color: white; font-size: 1.2rem; text-align: center; margin-bottom: 1rem;">
+            <button onclick="manualCheckIn()" class="btn-primary"
+                style="width: 100%; padding: 15px; font-weight: bold;">
+                VALIDATE ID
+            </button>
+        </div>
+
+        <div id="camera-stub"
+            style="padding: 2rem; border: 2px dashed var(--glass-border); border-radius: 16px; color: var(--text-secondary);">
+            <i data-lucide="camera" style="margin-bottom: 1rem;"></i>
+            <p>Camera integration requires HTTPS.<br>Use manual ID for local testing.</p>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <a href="{{ url_for('admin.dashboard') }}" class="btn-secondary"
+                style="width: 100%; display: block; padding: 12px;">Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function manualCheckIn() {
+        const id = document.getElementById('manual-id').value;
+        if (id) {
+            window.location.href = `/admin/scan/${id}`;
+        } else {
+            alert('Please enter a valid Registration ID');
+        }
+    }
+</script>
+{% endblock %}

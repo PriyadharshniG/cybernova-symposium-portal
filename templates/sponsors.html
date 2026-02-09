@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="padding-top: 120px; padding-bottom: 60px;">
+    <h1 class="text-gradient" style="font-size: 3rem; text-align: center; margin-bottom: 1rem;">Our Sponsors</h1>
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem;">Supported by industry leaders.</p>
+
+    <!-- Platinum Tier -->
+    <h2
+        style="color: #e5e4e2; text-align: center; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px;">
+        Platinum Partners</h2>
+    <div class="sponsors-grid platinum">
+        {% for sponsor in sponsors if sponsor.tier == 'platinum' %}
+        <div class="glass-panel sponsor-card"
+            style="text-align: center; padding: 2.5rem; position: relative; overflow: hidden;">
+            <div class="sponsor-glow platinum-glow"></div>
+            <div class="sponsor-icon-wrapper large">
+                <i data-lucide="{{ sponsor.logo_url }}"></i>
+            </div>
+            <h3 style="margin-top: 1.5rem; letter-spacing: 1px;">{{ sponsor.name }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Gold Tier -->
+    <h2
+        style="color: #ffd700; text-align: center; margin: 4rem 0 2rem; text-transform: uppercase; letter-spacing: 2px;">
+        Gold Partners</h2>
+    <div class="sponsors-grid gold">
+        {% for sponsor in sponsors if sponsor.tier == 'gold' %}
+        <div class="glass-panel sponsor-card" style="text-align: center; padding: 2rem;">
+            <div class="sponsor-glow gold-glow"></div>
+            <div class="sponsor-icon-wrapper medium">
+                <i data-lucide="{{ sponsor.logo_url }}"></i>
+            </div>
+            <h3 style="margin-top: 1.2rem;">{{ sponsor.name }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Silver Tier -->
+    <h2
+        style="color: #c0c0c0; text-align: center; margin: 4rem 0 2rem; text-transform: uppercase; letter-spacing: 2px;">
+        Silver Partners</h2>
+    <div class="sponsors-grid silver">
+        {% for sponsor in sponsors if sponsor.tier == 'silver' %}
+        <div class="glass-panel sponsor-card" style="text-align: center; padding: 1.5rem;">
+            <div class="sponsor-icon-wrapper small">
+                <i data-lucide="{{ sponsor.logo_url }}"></i>
+            </div>
+            <h4 style="margin-top: 1rem; font-size: 1rem;">{{ sponsor.name }}</h4>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .sponsors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .platinum .sponsor-card {
+        border: 1px solid rgba(229, 228, 226, 0.3);
+    }
+
+    .gold .sponsor-card {
+        border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .sponsor-card:hover img {
+        filter: grayscale(0%);
+        transform: scale(1.1);
+    }
+
+    .sponsor-card img {
+        transition: all 0.4s ease;
+    }
+
+    /* Glow Effects */
+    .sponsor-glow {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.5s;
+        z-index: -1;
+    }
+
+    .platinum-glow {
+        background: radial-gradient(circle, rgba(229, 228, 226, 0.2) 0%, transparent 70%);
+    }
+
+    .gold-glow {
+        background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+    }
+
+    .sponsor-card:hover .sponsor-glow {
+        opacity: 1;
+    }
+</style>
+{% endblock %}

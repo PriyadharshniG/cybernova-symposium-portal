@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Participation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', serif;
+            background: #f0f0f0;
+        }
+
+        .cert-container {
+            width: 297mm;
+            height: 210mm;
+            background: white;
+            margin: 20px auto;
+            border: 20px solid #1a1a4a;
+            position: relative;
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .border-inner {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid #daa520;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #1a1a4a;
+            margin: 0 0 1rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #daa520;
+            margin: 0 0 3rem;
+            font-weight: 400;
+        }
+
+        .content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #333;
+            max-width: 80%;
+        }
+
+        .name {
+            font-size: 3rem;
+            font-family: 'Great Vibes', cursive;
+            color: #1a1a4a;
+            margin: 1rem 0;
+            border-bottom: 2px solid #daa520;
+            display: inline-block;
+            padding: 0 2rem;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 4rem;
+        }
+
+        .sig-block {
+            text-align: center;
+        }
+
+        .sig-line {
+            width: 200px;
+            height: 1px;
+            background: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .seal {
+            position: absolute;
+            bottom: 40px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px double #daa520;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #daa520;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: inset 0 0 20px rgba(218, 165, 32, 0.2);
+        }
+
+        .btn-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #1a1a4a;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: sans-serif;
+        }
+
+        @media print {
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .cert-container {
+                margin: 0;
+                box-shadow: none;
+                border: 20px solid #1a1a4a;
+                page-break-after: always;
+            }
+
+            .btn-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn-print" onclick="window.print()">Print Certificate</button>
+    <div class="cert-container">
+        <div class="border-inner"></div>
+
+        <h1>Certificate</h1>
+        <h2>OF PARTICIPATION</h2>
+
+        <div class="content">
+            This is to certify that
+            <br>
+            <span class="name">{{ reg.full_name }}</span>
+            <br>
+            has successfully participated in the event <strong>{{ reg.event }}</strong>
+            <br>
+            at <strong>CYBERNOVA 2026</strong> National Level Technical Symposium.
+        </div>
+
+        <div class="seal">
+            Cybernova<br>2026
+        </div>
+
+        <div class="signatures">
+            <div class="sig-block">
+                <div class="sig-line"></div>
+                <strong>Event Coordinator</strong>
+            </div>
+            <div class="sig-block">
+                <div class="sig-line"></div>
+                <strong>Head of Department</strong>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

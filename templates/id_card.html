@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container"
+    style="padding-top: 120px; padding-bottom: 60px; display: flex; flex-direction: column; align-items: center;">
+    <h1 class="text-gradient" style="margin-bottom: 2rem;">Digital ID Pass</h1>
+
+    <div class="id-card" id="printableArea">
+        <div class="id-header">
+            <h2 style="margin: 0; font-size: 1.5rem;">CYBERNOVA 2026</h2>
+            <span style="font-size: 0.8rem; letter-spacing: 2px;">SYMPOSIUM PASS</span>
+        </div>
+
+        <div class="id-body">
+            <div class="profile-placeholder">
+                <i data-lucide="user" style="width: 60px; height: 60px; color: var(--text-secondary);"></i>
+            </div>
+
+            <h2 style="margin: 1rem 0 0.5rem; color: white;">{{ reg.full_name }}</h2>
+            <p style="color: var(--neon-cyan); font-weight: bold; margin-bottom: 1rem;">{{ reg.register_number }}</p>
+
+            <div class="id-details">
+                <p><strong>Dept:</strong> {{ reg.department }}</p>
+                <p><strong>Year:</strong> {{ reg.year }}</p>
+                <p><strong>Event:</strong> {{ reg.event }}</p>
+            </div>
+
+            <div class="qr-code">
+                <!-- QR Code Placeholder -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data={{ reg.register_number }}"
+                    alt="QR Code" style="width: 100px; height: 100px; border-radius: 8px;">
+            </div>
+
+            <div class="status-badge">VERIFIED</div>
+        </div>
+    </div>
+
+    <button onclick="window.print()" class="btn-primary" style="margin-top: 2rem;">
+        <i data-lucide="printer" style="margin-right: 8px;"></i> Print / Download
+    </button>
+</div>
+
+<style>
+    .id-card {
+        width: 320px;
+        background: rgba(10, 10, 42, 0.95);
+        border: 2px solid var(--neon-cyan);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+        position: relative;
+    }
+
+    .id-header {
+        background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
+        padding: 1.5rem;
+        text-align: center;
+        color: white;
+    }
+
+    .id-body {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background-image: radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.1) 0%, transparent 60%);
+    }
+
+    .profile-placeholder {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid var(--neon-purple);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+    }
+
+    .id-details p {
+        margin: 0.3rem 0;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .qr-code {
+        margin-top: 1.5rem;
+        padding: 10px;
+        background: white;
+        border-radius: 12px;
+    }
+
+    .status-badge {
+        margin-top: 1.5rem;
+        padding: 4px 12px;
+        background: rgba(0, 255, 0, 0.2);
+        color: #00ff00;
+        border: 1px solid #00ff00;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        #printableArea,
+        #printableArea * {
+            visibility: visible;
+        }
+
+        #printableArea {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .bg-animation,
+        .navbar,
+        footer,
+        .btn-primary {
+            display: none;
+        }
+    }
+</style>
+{% endblock %}

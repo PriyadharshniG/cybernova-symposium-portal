@@ -19,7 +19,7 @@
 
         <div style="display: flex; gap: 20px; justify-content: center;">
             <a href="#events" class="btn-primary">Explore Events</a>
-            <a href="{{ url_for('register') }}" class="btn-secondary">Register Now</a>
+            <a href="{{ url_for('user.register') }}" class="btn-secondary">Register Now</a>
         </div>
     </div>
 </section>
@@ -86,34 +86,172 @@
     </div>
 </section>
 
+<!-- MEMORIES GALLERY (Feature 6) -->
+<section id="gallery" style="padding: 100px 0; background: rgba(0,0,0,0.2);">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h2 style="font-size: 2.5rem;">Symposium <span class="text-gradient">Memories</span></h2>
+            <p style="color: var(--text-secondary);">Relive the flagship moments of CyberNova</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item glass-panel">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
+                    alt="Tech Hub">
+                <div class="gallery-overlay">
+                    <h4>Innovate '25</h4>
+                    <p>Flagship Hackathon</p>
+                </div>
+            </div>
+            <div class="gallery-item glass-panel">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80"
+                    alt="Teamwork">
+                <div class="gallery-overlay">
+                    <h4>Collaboration</h4>
+                    <p>Developer Workshop</p>
+                </div>
+            </div>
+            <div class="gallery-item glass-panel">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80"
+                    alt="Cybersecurity">
+                <div class="gallery-overlay">
+                    <h4>Cyber Wars</h4>
+                    <p>CTF Challenge</p>
+                </div>
+            </div>
+            <div class="gallery-item glass-panel">
+                <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80"
+                    alt="Tech Presentation">
+                <div class="gallery-overlay">
+                    <h4>Pitch Deck</h4>
+                    <p>Startup Ideas</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRIZES SECTION -->
+<section id="prizes" style="padding: 100px 0;">
+    <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Win Big <span
+            class="text-gradient">Rewards</span></h2>
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 4rem;">Showcase your skills and take home
+        exciting prizes.</p>
+
+    <div class="glass-panel"
+        style="max-width: 900px; margin: 0 auto; padding: 3rem; position: relative; overflow: hidden;">
+        <div
+            style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: var(--neon-purple); filter: blur(80px); opacity: 0.5;">
+        </div>
+
+        <div class="prizes-container">
+            <!-- 2nd Prize -->
+            <div class="prize-card second">
+                <i data-lucide="trophy" style="width: 50px; height: 50px; color: #c0c0c0; margin-bottom: 1rem;"></i>
+                <h3 style="color: #c0c0c0;">Runners Up</h3>
+                <p style="font-size: 1.5rem; font-weight: bold; margin: 0.5rem 0;">₹15,000</p>
+                <span class="prize-badge">Certificates + Swag</span>
+            </div>
+
+            <!-- 1st Prize -->
+            <div class="prize-card first">
+                <div class="crown-icon">👑</div>
+                <i data-lucide="trophy"
+                    style="width: 70px; height: 70px; color: #ffd700; margin-bottom: 1rem; filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));"></i>
+                <h3 style="color: #ffd700; font-size: 1.8rem;">Champions</h3>
+                <p style="font-size: 2.5rem; font-weight: bold; margin: 0.5rem 0;" class="counter" data-target="25000">
+                    ₹25,000</p>
+                <span class="prize-badge highlight">Trophy + Certificates + Internship</span>
+            </div>
+
+            <!-- 3rd Prize -->
+            <div class="prize-card third">
+                <i data-lucide="trophy" style="width: 50px; height: 50px; color: #cd7f32; margin-bottom: 1rem;"></i>
+                <h3 style="color: #cd7f32;">2nd Runners Up</h3>
+                <p style="font-size: 1.5rem; font-weight: bold; margin: 0.5rem 0;">₹10,000</p>
+                <span class="prize-badge">Certificates</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Total Prize Pool</p>
+            <h2 class="text-gradient" style="font-size: 3rem;">₹50,000+</h2>
+        </div>
+    </div>
+</section>
+
 <!-- EVENTS SHOWCASE -->
 <section id="events" style="padding: 100px 0;">
+    <!-- AI EVENT RECOMMENDATION (Feature 3) -->
+    <div class="ai-matchmaker glass-panel"
+        style="margin-bottom: 4rem; padding: 2.5rem; text-align: center; border: 2px solid rgba(0, 243, 255, 0.2);">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 1rem;">
+            <div class="ai-brain-icon">
+                <i data-lucide="brain-circuit" style="width: 40px; height: 40px; color: var(--neon-cyan);"></i>
+            </div>
+            <h2 style="margin: 0;">AI <span class="text-gradient">Matchmaker</span></h2>
+        </div>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Confused which event to pick? Let our AI suggest
+            the best match for you.</p>
+
+        <div class="interest-tags"
+            style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 2rem;">
+            <button class="interest-btn" data-interest="ai">Artificial Intelligence</button>
+            <button class="interest-btn" data-interest="web">Web Development</button>
+            <button class="interest-btn" data-interest="design">UI/UX Design</button>
+            <button class="interest-btn" data-interest="hackathon">Hackathons</button>
+            <button class="interest-btn" data-interest="workshop">Workshops</button>
+            <button class="interest-btn" data-interest="paper">Research / Paper</button>
+        </div>
+
+        <div id="ai-suggestion-box" style="display: none; animation: popIn 0.5s ease;">
+            <p
+                style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--neon-purple); margin-bottom: 1rem;">
+                Top Recommendation for You</p>
+            <div id="recommended-card" class="fe-card"
+                style="max-width: 600px; margin: 0 auto; min-height: auto; border: 2px solid var(--neon-pink); background: rgba(236, 72, 153, 0.05);">
+                <!-- Recommended content will be injected here via JS -->
+            </div>
+        </div>
+    </div>
+
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem;">
         <h2 style="font-size: 2.5rem;">Featured <span class="text-gradient">Events</span></h2>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
+    <div class="featured-events-grid">
         {% for id, event in events.items() %}
-        <div class="glass-panel"
-            style="position: relative; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--neon-cyan);">
+        <div class="fe-card glass-panel">
+            <div class="fe-card-glow"></div>
+
+            <div class="fe-card-header">
+                <span class="fe-badge">{{ event.category }}</span>
+                <div class="fe-icon-bg">
+                    <i data-lucide="{{ event.icon }}"></i>
+                </div>
             </div>
 
-            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 1rem;">
-                <i data-lucide="{{ event.icon }}" style="width: 30px; height: 30px; color: var(--neon-cyan);"></i>
-                <span
-                    style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary);">{{
-                    event.category }}</span>
+            <h3 class="fe-title">{{ event.name }}</h3>
+            <p class="fe-description">{{ event.tagline }}</p>
+
+            <div class="fe-metadata">
+                <div class="fe-meta-item">
+                    <i data-lucide="calendar" size="16"></i>
+                    <span>March 25, 2026</span>
+                </div>
+                <div class="fe-meta-item">
+                    <i data-lucide="clock" size="16"></i>
+                    <span>09:00 AM</span>
+                </div>
+                <div class="fe-meta-item prize">
+                    <i data-lucide="trophy" size="16"></i>
+                    <span>₹5,000+ Prize Pool</span>
+                </div>
             </div>
 
-            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">{{ event.name }}</h3>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; flex-grow: 1;">{{ event.tagline }}</p>
-
-            <div style="display: flex; gap: 10px; margin-top: auto;">
-                <a href="{{ url_for('event_detail', event_id=id) }}" class="btn-secondary"
-                    style="padding: 8px 20px; font-size: 0.9rem; flex: 1; text-align: center;">Details</a>
-                <a href="{{ url_for('register') }}?event={{ id }}" class="btn-primary"
-                    style="padding: 8px 20px; font-size: 0.9rem; flex: 1; text-align: center; box-shadow: none;">Register</a>
+            <div class="fe-footer">
+                <a href="{{ url_for('main.event_detail', event_id=id) }}" class="fe-btn-secondary">View Details</a>
+                <a href="{{ url_for('user.register') }}?event={{ id }}" class="fe-btn-primary">Register Now</a>
             </div>
         </div>
         {% endfor %}
@@ -159,6 +297,34 @@
     </div>
 </section>
 
+<!-- SPONSORS SECTION -->
+<section id="sponsors" style="padding: 100px 0; background: rgba(0,0,0,0.1);">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h2 style="font-size: 2.5rem;">Our <span class="text-gradient">Sponsors</span></h2>
+            <p style="color: var(--text-secondary);">Success enabled by industry leaders</p>
+        </div>
+
+        <div class="sponsors-marquee">
+            <div class="sponsors-grid">
+                {% for sponsor in sponsors %}
+                <div class="glass-panel sponsor-mini-card">
+                    <div class="sponsor-icon-box">
+                        <i data-lucide="{{ sponsor.logo_url }}"></i>
+                    </div>
+                    <p class="sponsor-name-small">{{ sponsor.name }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="{{ url_for('main.sponsors') }}" class="btn-outline" style="font-size: 0.9rem;">View All
+                Partners</a>
+        </div>
+    </div>
+</section>
+
 <!-- ORGANIZERS SECTION -->
 <section id="organizers" style="padding: 100px 0;">
     <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 4rem;">Organized <span
@@ -197,4 +363,101 @@
     </div>
 </section>
 
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Feature 3: AI Matchmaker Logic
+    const interestBtns = document.querySelectorAll('.interest-btn');
+    const suggestionBox = document.getElementById('ai-suggestion-box');
+    const recommendedCard = document.getElementById('recommended-card');
+
+    // Mapping interests to event IDs
+    const recommendations = {
+        'ai': 'ai-ideathon',
+        'web': 'web-dev',
+        'design': 'ui-ux',
+        'hackathon': 'hackathon',
+        'workshop': 'git-bootcamp',
+        'paper': 'paper-presentation'
+    };
+
+    // Grab event data from Jinja (injected into a JS object)
+    const eventsData = {{ events | tojson }};
+
+    interestBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // UI state
+            interestBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const interest = btn.getAttribute('data-interest');
+            const eventId = recommendations[interest];
+            const event = eventsData[eventId];
+
+            if (event) {
+                renderRecommendation(event);
+                suggestionBox.style.display = 'block';
+                // Scroll to suggestion
+                suggestionBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+    });
+
+    function renderRecommendation(event) {
+        recommendedCard.innerHTML = `
+            <div class="fe-card-header">
+                <span class="fe-badge">${event.category}</span>
+                <i data-lucide="${event.icon}" style="color:var(--neon-pink)"></i>
+            </div>
+            <h3 class="fe-title">${event.name}</h3>
+            <p class="fe-description">${event.tagline}</p>
+            <div class="fe-footer">
+                <a href="/event/${event.id}" class="fe-btn-secondary">Learn More</a>
+                <a href="/register?event=${event.id}" class="fe-btn-primary" style="background:var(--neon-pink); border-color:var(--neon-pink)">Match Found - Register Now</a>
+            </div>
+        `;
+        lucide.createIcons();
+    }
+</script>
+<script>
+    // Previous Counter Animation Logic
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // The lower the slower
+
+    const animateCounters = () => {
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText.replace(/[^0-9]/g, '');
+
+                // Lower increment to reach target slower
+                const inc = target / speed;
+
+                if (count < target) {
+                    // Add inc to count and output in counter
+                    counter.innerText = "₹" + Math.ceil(count + inc).toLocaleString();
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = "₹" + target.toLocaleString();
+                }
+            };
+
+            updateCount();
+        });
+    }
+
+    // Trigger on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const section = document.querySelector('#prizes');
+    if (section) observer.observe(section);
+</script>
 {% endblock %}

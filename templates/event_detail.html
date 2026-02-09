@@ -16,7 +16,7 @@
         </div>
 
         <div class="container" style="position: relative; z-index: 2;">
-            <a href="{{ url_for('index') }}#events"
+            <a href="{{ url_for('main.index') }}#events"
                 style="display: inline-flex; align-items: center; gap: 5px; color: var(--text-secondary); margin-bottom: 1rem; text-decoration: none;">
                 <i data-lucide="arrow-left" style="width: 16px;"></i> Back to Events
             </a>
@@ -87,7 +87,7 @@
                     <p style="font-weight: 600; font-size: 1.1rem; margin-top: 5px;">VGLUG Foundation</p>
                 </div>
 
-                <a href="{{ url_for('register') }}?event={{ event.id }}" class="btn-primary"
+                <a href="{{ url_for('user.register') }}?event={{ event.id }}" class="btn-primary"
                     style="width: 100%; display: block; text-align: center;">
                     Register Now
                 </a>

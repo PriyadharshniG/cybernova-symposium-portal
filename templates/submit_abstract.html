@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top: 120px; margin-bottom: 60px;">
+    <div class="glass-panel" style="max-width: 600px; margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <i data-lucide="file-up"
+                style="width: 50px; height: 50px; color: var(--neon-purple); margin-bottom: 1rem;"></i>
+            <h1 style="font-size: 2rem;">Abstract <span class="text-gradient">Submission</span></h1>
+            <p style="color: var(--text-secondary);">Upload your research paper / presentation abstract (PDF only)</p>
+        </div>
+
+        <form action="{{ url_for('user.submit_abstract') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Registration
+                    ID</label>
+                <input type="text" name="registration_id" value="{{ request.args.get('reg_id', '') }}"
+                    placeholder="Enter your ID from the success page"
+                    style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 8px; color: white;"
+                    required>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 2rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">PDF File</label>
+                <input type="file" name="abstract_file" accept=".pdf"
+                    style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); border-radius: 8px; color: white;"
+                    required>
+            </div>
+
+            <button type="submit" class="btn-primary"
+                style="width: 100%; padding: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px;">
+                Submit Abstract
+            </button>
+        </form>
+
+        <div
+            style="margin-top: 2rem; padding: 1.5rem; background: rgba(0, 243, 255, 0.05); border-radius: 12px; border: 1px dashed var(--neon-cyan);">
+            <h4 style="color: var(--neon-cyan); margin-bottom: 0.5rem;">Submission Rules:</h4>
+            <ul style="color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.5rem;">
+                <li>Max file size: 5MB</li>
+                <li>Format: PDF only</li>
+                <li>Ensure your Reg ID matches the registration record</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

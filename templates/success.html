@@ -15,10 +15,23 @@
         </p>
 
         <div class="success-actions">
-            <a href="{{ url_for('register') }}" class="btn btn-primary">
-                ➕ Register Another Event
+            {% if reg_id %}
+            <a href="{{ url_for('user.id_card', reg_id=reg_id) }}" class="btn-primary" style="text-decoration: none;">
+                🎫 Download ID Pass
             </a>
-            <a href="{{ url_for('index') }}" class="btn btn-outline">
+            <a href="{{ url_for('user.certificate', reg_id=reg_id) }}" class="btn-secondary"
+                style="text-decoration: none;">
+                📜 View Certificate
+            </a>
+            <a href="{{ url_for('user.submit_abstract') }}?reg_id={{ reg_id }}" class="btn-primary"
+                style="text-decoration: none; background: var(--neon-purple); border-color: var(--neon-purple);">
+                📄 Submit Abstract
+            </a>
+            {% endif %}
+            <a href="{{ url_for('user.register') }}" class="btn-outline">
+                ➕ Register Another
+            </a>
+            <a href="{{ url_for('main.index') }}" class="btn-outline">
                 🏠 Back to Home
             </a>
         </div>

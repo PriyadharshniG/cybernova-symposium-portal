@@ -10,12 +10,24 @@
                 <p style="color: var(--text-secondary);">Manage registrations and export data</p>
             </div>
             <div class="actions" style="display: flex; gap: 15px;">
-                <a href="{{ url_for('download_csv') }}" class="btn-primary"
+                <a href="{{ url_for('admin.scanner') }}" class="btn-outline"
+                    style="text-decoration: none; font-size: 0.9rem;">
+                    🎯 Scanner
+                </a>
+                <a href="{{ url_for('admin.submissions') }}" class="btn-outline"
+                    style="text-decoration: none; font-size: 0.9rem;">
+                    📂 Submissions
+                </a>
+                <a href="{{ url_for('admin.analytics') }}" class="btn-outline"
+                    style="text-decoration: none; font-size: 0.9rem;">
+                    📊 Analytics
+                </a>
+                <a href="{{ url_for('admin.download_csv') }}" class="btn-primary"
                     style="text-decoration: none; font-size: 0.9rem;">
                     <i data-lucide="download" style="width: 16px; display: inline-block; vertical-align: middle;"></i>
                     Export CSV
                 </a>
-                <a href="{{ url_for('logout') }}" class="btn-secondary"
+                <a href="{{ url_for('admin.logout') }}" class="btn-secondary"
                     style="text-decoration: none; font-size: 0.9rem;">Logout</a>
             </div>
         </header>
@@ -33,6 +45,7 @@
                         <th>Event</th>
                         <th>Phone</th>
                         <th>Date</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +61,16 @@
                         <td><span style="color: var(--neon-cyan);">{{ reg.event }}</span></td>
                         <td>{{ reg.phone }}</td>
                         <td>{{ reg.created_at.strftime('%Y-%m-%d') }}</td>
+                        <td style="display: flex; gap: 10px;">
+                            <a href="{{ url_for('user.id_card', reg_id=reg.id) }}" title="View ID Pass"
+                                style="color: var(--neon-cyan);">
+                                <i data-lucide="id-card" style="width: 18px;"></i>
+                            </a>
+                            <a href="{{ url_for('user.certificate', reg_id=reg.id) }}" title="View Certificate"
+                                style="color: var(--neon-purple);">
+                                <i data-lucide="award" style="width: 18px;"></i>
+                            </a>
+                        </td>
                     </tr>
                     {% endfor %}
                     {% else %}

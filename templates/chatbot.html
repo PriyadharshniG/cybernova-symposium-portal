@@ -1,0 +1,113 @@
+<!-- CyberBot Floating Widget -->
+<div id="cyberbot-widget" class="cyberbot-hidden">
+    <!-- Chat Window -->
+    <div id="cyberbot-window" class="glass-panel">
+        <div class="chat-header">
+            <div class="bot-info">
+                <div class="bot-avatar">
+                    <i data-lucide="bot"></i>
+                    <span class="online-status"></span>
+                </div>
+                <div>
+                    <h4 style="margin: 0; font-size: 0.9rem;">CyberBot</h4>
+                    <span style="font-size: 0.7rem; opacity: 0.6;">Symposium Assistant</span>
+                </div>
+            </div>
+            <button id="close-chat" class="chat-tool-btn"><i data-lucide="x"></i></button>
+        </div>
+
+        <div id="chat-messages" class="chat-body">
+            <div class="message bot">
+                <div class="msg-bubble">
+                    Hello! I'm CyberBot. Ask me anything about CyberNova 2026! 🚀
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            <div id="typing-indicator" class="typing-indicator" style="display: none;">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="input-wrapper">
+                <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+                <button id="send-btn"><i data-lucide="send"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Trigger Button -->
+    <button id="chat-trigger" class="glass-panel pulse-neon">
+        <i data-lucide="message-square" class="open-icon"></i>
+        <i data-lucide="chevron-down" class="close-icon" style="display: none;"></i>
+    </button>
+</div>
+
+<script>
+    const widget = document.getElementById('cyberbot-widget');
+    const trigger = document.getElementById('chat-trigger');
+    const closeBtn = document.getElementById('close-chat');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatMessages = document.getElementById('chat-messages');
+    const typingIndicator = document.getElementById('typing-indicator');
+
+    // Toggle Chat
+    trigger.addEventListener('click', () => {
+        widget.classList.toggle('active');
+        const isOpen = widget.classList.contains('active');
+        trigger.querySelector('.open-icon').style.display = isOpen ? 'none' : 'block';
+        trigger.querySelector('.close-icon').style.display = isOpen ? 'block' : 'none';
+        if (isOpen) chatInput.focus();
+    });
+
+    closeBtn.addEventListener('click', () => {
+        widget.classList.remove('active');
+        trigger.querySelector('.open-icon').style.display = 'block';
+        trigger.querySelector('.close-icon').style.display = 'none';
+    });
+
+    // Handle Send
+    async function sendMessage() {
+        const msg = chatInput.value.trim();
+        if (!msg) return;
+
+        // User message
+        appendMessage('user', msg);
+        chatInput.value = '';
+
+        // Bot response (with typing delay)
+        typingIndicator.style.display = 'flex';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        try {
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: msg })
+            });
+            const data = await response.json();
+
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                appendMessage('bot', data.response);
+            }, 800);
+        } catch (error) {
+            typingIndicator.style.display = 'none';
+            appendMessage('bot', "Connection lost. Please try again.");
+        }
+    }
+
+    function appendMessage(sender, text) {
+        const div = document.createElement('div');
+        div.className = `message ${sender}`;
+        div.innerHTML = `<div class="msg-bubble">${text}</div>`;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        lucide.createIcons();
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
